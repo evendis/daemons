@@ -18,6 +18,7 @@ describe Daemons::Optparse do
       {given: ["-n"],                           expect: {no_wait: true}},
       {given: ["--no_wait"],                    expect: {no_wait: true}},
       {given: ["--force_kill_waittime", "42"],  expect: {force_kill_waittime: 42}},
+      {given: ["--pid_delimiter", "a.b"],       expect: {pid_delimiter: "a.b"}},
       {given: ["-l"],                           expect: {log_output: true}},
       {given: ["--log_output"],                 expect: {log_output: true}},
       {given: ["--logfilename", "FILE"],        expect: {logfilename: "FILE"}},
@@ -27,6 +28,7 @@ describe Daemons::Optparse do
       {given: [
           "-t", "-s", "-f", "-n",
           "--force_kill_waittime", "42",
+          "--pid_delimiter", "a.b",
           "-l", "--logfilename", "LF",
           "--output_logfilename", "OLF",
           "--log_dir", "/dir/",
@@ -37,6 +39,7 @@ describe Daemons::Optparse do
           force: true,
           no_wait: true,
           force_kill_waittime: 42,
+          pid_delimiter: "a.b",
           log_output: true,
           log_output_syslog: true,
           logfilename: "LF",
